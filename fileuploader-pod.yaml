@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: fileuploader
+  labels:
+    app: fileuploader
+  namespace: test
+spec:
+  containers:
+  - name: fileuploader
+    image: jpalaparthi/fileuploader
+    resources:
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
+    ports:
+      - containerPort: 50080

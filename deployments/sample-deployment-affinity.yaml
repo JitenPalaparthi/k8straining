@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fileuploader
+  namespace: test
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: fileuploader
+  template:
+    metadata:
+      labels:
+        app: fileuploader
+    spec:
+      containers:
+      - name: fileuploader
+        image: jpalaparthi/fileuploader
+        ports:
+        - containerPort: 50080
+        volumeMounts:
+        - mountPath: /app/uploads
+          name: fileuploader-ps
+        env:
+          - name:  PORT
+            valueFrom:
+              configMapKeyRef:
+                name:  appdataconfigmap
+                key:  application.port
+          - name: PASSWORD
+            valueFrom:
+                secretKeyRef:
+                  name: myusername
+                  key: username.txt
+    
+      affinity:
+        nodeAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 1
+            preference: 
+              matchExpressions:
+              - key: size
+                operator: In
+                values:
+                - large
+      volumes:
+      - name:  fileuploader-ps
+        persistentVolumeClaim:
+          claimName: fileuploader-pv-claim
+          
+        
+      

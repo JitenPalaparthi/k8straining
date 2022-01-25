@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: mysecret
+  namespace: test
+type: Opaque
+data:
+  username: aml0ZW4=
+  password: YWJjZEAxMjM0
+# echo -n 'abcd@1234' | base64

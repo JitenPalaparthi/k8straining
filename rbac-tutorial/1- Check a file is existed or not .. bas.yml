@@ -1,0 +1,22 @@
+1- Check a file is existed or not .. based on that file you check 
+1- you can check through some command and 
+1- ensure that if that command is work then your container is working
+
+If you want to check based on a command 
+- LivenessProbe 
+
+- ReadynessProbe
+
+exec: -cat  /tmp/healthy 
+// Probe for http based stuff
+//
+  httpGet:
+        path: /healthz
+        port: 8080
+        httpHeaders:
+        - name: Custom-Header
+          value: Awesome
+
+-- your application is connecting to database -- 10 time, every 5 seconds
+-- your applciation is connecting to message broker
+-- your application is connecting to other applications.

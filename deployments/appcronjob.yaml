@@ -1,0 +1,19 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: appcronjob
+  namespace: test
+spec:
+  schedule: "*/5 * * * * "
+  jobTemplate:
+    spec:
+      template:
+        metadata:
+          labels:
+            app: appcronjob
+        spec:
+          restartPolicy: OnFailure
+          containers:
+            - image:  jpalaparthi/appjob
+              name:  appcronjob
+

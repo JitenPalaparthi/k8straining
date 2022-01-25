@@ -1,0 +1,33 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: fileuploader-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$1
+  labels:
+    app: fileuploader-ingress
+spec:
+  rules:
+  - host: fileuploader-web.info
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/upload"
+        backend:
+          service:
+            name: fileuploader
+            port: 
+              number: 50080
+      - pathType: Prefix
+        path: "/sample"
+        backend:
+          service:
+            name: anotherweb
+            port:
+              number: 8080
+      
+# minikube addons enable ingress
+# kubectl create deployment fileuploader --image=jpalaparthi/fileuploader
+# kubectl expose deployment fileuploader --type=NodePort --port=50080
+# minikube service fileuploader --url
+# curl someurl/ping

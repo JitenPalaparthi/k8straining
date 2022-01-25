@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: fileuploader
+  namespace: test
+  labels:
+    app: fileuploader
+spec:
+  replicas: 10
+  selector:
+    matchLabels:
+      app: fileuploader
+  template:
+    metadata:
+      labels:
+        app: fileuploader
+    spec:
+      containers:
+        - name:  fileuploader
+          image: jpalaparthi/fileuploader
+          ports:
+            - containerPort: 50080

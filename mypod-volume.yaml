@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: fileuploader
+  labels:
+    app: fileuploader
+  namespace: test
+spec:
+  volumes:
+    - name: task-pv-storage
+      persistentVolumeClaim:
+        claimName: task-pv-claim
+  containers:
+  - name: fileuploader
+    image: jpalaparthi/fileuploader
+    resources:
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
+    volumeMounts:
+      - mountPath: "/app/uploads"
+        name: task-pv-storage
+    ports:
+      - containerPort: 50080

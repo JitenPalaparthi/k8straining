@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: fileuplaoderd
+  namespace: test
+  labels:
+    app: fileuplaoderd
+spec:
+  selector:
+    matchLabels:
+      app: fileuplaoderd
+  template:
+    metadata:
+      labels:
+        app: fileuplaoderd
+    spec:
+      containers:
+        - name: fileuplaoderd
+          image: jpalaparthi/fileuploader
+          ports:
+            - containerPort: 50080
+      #tolerations:
+       # - key: node-role.kubernetes.io/master
+        #  operator: Exists
+         # effect: NoSchedule
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: type
+                operator: NotIn
+                values:
+                - master
+          #must create a lable in the master node
+          # kubectl label node minikube type=master
+            
+
+          
+          
+    

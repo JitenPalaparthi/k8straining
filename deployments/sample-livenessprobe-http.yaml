@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    test: liveness
+  name: liveness-http
+spec:
+  containers:
+  - name: liveness
+    image: jpalaparthi/fileuploader
+    livenessProbe:   
+      httpGet:
+        path: /healthz
+        port: 50080
+      initialDelaySeconds: 3
+      periodSeconds: 3

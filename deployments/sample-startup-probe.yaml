@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    test: startup
+  name: startup-http
+spec:
+  containers:
+  - name: startup
+    image: jpalaparthi/fileuploader
+    startupProbe:
+      httpGet:  
+        path: /pong
+        port: 50080
+      initialDelaySeconds: 3
+      periodSeconds: 3
+      

@@ -1,0 +1,21 @@
+Rule: Some set of operations that can be applicable for group of resources. There are different
+API Groups 
+- v1/ apps/v1 batch/a1
+
+Role, Cluster Role: Roles consists of Rules. The difference is scope. 
+- If you apply rules for
+- A single namespace then it is called as Role.
+- If a rule is applied for whole cluster then it is called as ClusterRole
+
+Subject: Who is going to perform operation on Kubernetes is called a Subject.
+    Users: Like you and me
+    Service Accounts: Jenkins, Helm 
+    Groups: Groups are for multiple accounts
+
+RoleBinding, ClusterRoleBinding: Binds subject(s) to the Roles.
+
+
+
+
+
+

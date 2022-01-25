@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: fileuploader
+  namespace: test
+spec:
+  selector:
+    app: fileuploader
+  type: LoadBalancer
+  ports:
+  - port: 50080
+    targetPort: 50080

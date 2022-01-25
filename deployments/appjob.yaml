@@ -1,0 +1,16 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: appjob
+  namespace: test
+spec:
+  completions: 6
+  parallelism: 2
+  backoffLimit: 4
+  ttlSecondsAfterFinished: 100
+  template:
+    spec:
+      containers:
+      - name: appjob
+        image: jpalaparthi/appjob
+      restartPolicy: Never

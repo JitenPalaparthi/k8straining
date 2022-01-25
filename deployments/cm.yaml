@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: appdataconfigmap
+  namespace: test
+data:
+  application.port: "50080"
+  application.name: "fileuploder"
+  application.type: "microservice"

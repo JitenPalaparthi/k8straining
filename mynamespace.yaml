@@ -1,0 +1,7 @@
+# mynamespace.yaml is the file name
+apiVersion: v1
+kind: Namespace
+metadata:
+  name:  test
+
+# kubectl create -f mynamespace.yaml

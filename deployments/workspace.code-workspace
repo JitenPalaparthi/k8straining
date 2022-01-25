@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "../../.."
+		},
+		{
+			"path": "../../golang"
+		},
+		{
+			"path": "../../assignment"
+		}
+	],
+	"settings": {}
+}
